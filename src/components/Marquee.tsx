@@ -1,6 +1,7 @@
 import MarqueeText from "react-marquee-text"
 import "react-marquee-text/dist/styles.css"
 import { INews, INewsResponse } from "../types/type";
+import Link from "next/link";
 
 const Marquee = async () => {
 
@@ -17,7 +18,9 @@ const Marquee = async () => {
             {
                 news.map(n => 
                     <span className="" key={n.id}>
-                        <span className=" text-white">{n.title}</span>
+                        <Link className="text-white hover:text-blue-300 underline" href={`/news/${n.id}`}>
+                            {n.title}
+                        </Link>
                         <span className="mx-3 text-gray-300">•</span>
                     </span>
                 )

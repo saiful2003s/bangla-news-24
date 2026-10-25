@@ -1,5 +1,7 @@
 import Image from 'next/image';
+import Link from 'next/link';
 import { INewsSectionsResponse } from '../types/type';
+import OtherNewsSection from './OtherNewsSection';
 
 
 const NewsSection = async () => {
@@ -10,7 +12,7 @@ const NewsSection = async () => {
     const mainNews = news[0].articles[0];
     const otherNews = news[0].articles.slice(1);
 
-    const otherSectionsNews = news.slice(1)
+
 
 
 
@@ -20,35 +22,40 @@ const NewsSection = async () => {
             {/* main news section */}
             <div className="grid grid-cols-2 gap-4">
                 {/* mainNews card */}
-                <div className="card bg-base-100 shadow-sm">
-                    <figure>
-                        <Image
-                            src={mainNews.imageUrl}
-                            width={400}
-                            height={300}
-                            alt={mainNews.imageAlt} />
-                    </figure>
-                    <div className="card-body">
-                        <h3 className='text-rose-600'>{news[0].title}</h3>
-                        <h2 className="card-title font-bold">{mainNews.title}</h2>
-                        <p>{mainNews.description}</p>
-                        <p>
-                            {mainNews.firstPublished ?
-                                new Date(mainNews.firstPublished).toLocaleString('bn-BD', {
-                                    day: 'numeric',
-                                    month: 'long',
-                                    year: 'numeric',
-                                    weekday: 'long',
-                                    hour: 'numeric',
-                                    minute: 'numeric',
-                                    hour12: true,
-                                    timeZone: 'Asia/Dhaka'
-                                }) : 'প্রকাশের তারিখ পাওয়া যায়নি'
-                            }
+                <Link href={`/news/${mainNews.id}`} className="card bg-base-100 shadow-sm 
+                   transition-all duration-300 ease-in-out
+                   hover:-translate-y-1 hover:shadow-xl
+                   cursor-pointer ">
+                    <div className="card bg-base-100 shadow-sm">
+                        <figure>
+                            <Image
+                                src={mainNews.imageUrl}
+                                width={400}
+                                height={300}
+                                alt={mainNews.imageAlt} />
+                        </figure>
+                        <div className="card-body">
+                            <h3 className='text-rose-600'>{news[0].title}</h3>
+                            <h2 className="card-title font-bold">{mainNews.title}</h2>
+                            <p>{mainNews.description}</p>
+                            <p>
+                                {mainNews.firstPublished ?
+                                    new Date(mainNews.firstPublished).toLocaleString('bn-BD', {
+                                        day: 'numeric',
+                                        month: 'long',
+                                        year: 'numeric',
+                                        weekday: 'long',
+                                        hour: 'numeric',
+                                        minute: 'numeric',
+                                        hour12: true,
+                                        timeZone: 'Asia/Dhaka'
+                                    }) : 'প্রকাশের তারিখ পাওয়া যায়নি'
+                                }
 
-                        </p>
+                            </p>
+                        </div>
                     </div>
-                </div>
+                </Link>
                 {/* Others News */}
                 <div className="overflow-hidden rounded-box border border-base-300 bg-base-100">
                     <ul className="list">
@@ -59,9 +66,12 @@ const NewsSection = async () => {
                             >
                                 <h4 className='text-rose-600 font-semibold'>{news[0].title}</h4>
 
-                                <h3 className=" font-semibold leading-relaxed text-lg">
-                                    {on.title}
-                                </h3>
+                                <Link href={`/news/${on.id}`} className=" hover:text-blue-500 hover:underline">
+                                    <h3 className=" font-semibold leading-relaxed text-lg">
+                                        {on.title}
+                                    </h3>
+
+                                </Link>
                             </li>
                         ))}
                     </ul>
@@ -69,53 +79,7 @@ const NewsSection = async () => {
             </div>
 
             {/* Other Sections News */}
-            <div>
-                {
-                    otherSectionsNews.map(osn => (
-                        <div key={osn.curationId} className="mt-8">
-                            <h3 className=" font-semibold text-lg mb-2">{osn.title}</h3>
-                            <div className="bg-red-600 py-px"></div>
-                            {/* news card */}
-                            <div className="grid grid-cols-3 gap-4 mt-4">
-                                {
-                                    osn.articles.map(a => (
-                                        <div key={a.id} className="card bg-base-100 shadow-sm">
-                                            <figure>
-                                                <Image
-                                                    width={400}
-                                                    height={300}
-                                                    src={a.imageUrl}
-                                                    alt={a.imageAlt || a.title} />
-                                            </figure>
-                                            <div className="card-body ">
-                                                <h4 className='text-red-600'>{osn.title}</h4>
-                                                <h2 className="card-title line-clamp-2">{a.title}</h2>
-                                                <p className="text-gray-600 line-clamp-3">{a.description}</p>
-                                                <p className="text-gray-500 text-sm">
-                                                    {mainNews.firstPublished ?
-                                                        new Date(mainNews.firstPublished).toLocaleString('bn-BD', {
-                                                            day: 'numeric',
-                                                            month: 'long',
-                                                            year: 'numeric',
-                                                            weekday: 'long',
-                                                            hour: 'numeric',
-                                                            minute: 'numeric',
-                                                            hour12: true,
-                                                            timeZone: 'Asia/Dhaka'
-                                                        }) : 'প্রকাশের তারিখ পাওয়া যায়নি'
-                                                    }
-
-                                                </p>
-
-                                            </div>
-                                        </div>
-                                    ))
-                                }
-                            </div>
-                        </div>
-                    ))
-                }
-            </div>
+            <OtherNewsSection />
 
         </div>
     );

@@ -71,6 +71,7 @@ export interface INewsSectionsResponse {
     count: number;
     cachedAt: string;
     data: INewsSection[];
+    articles: INewsArticle[];
 }
 
 

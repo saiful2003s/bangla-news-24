@@ -16,8 +16,13 @@ const MostReadSection = async () => {
                 <ol className="list-decimal list-inside marker:text-red-600 marker:text-lg marker:font-bold">
                     {
                         news.map(n => (
-                            <li key={n.id} className="mb-2 font-semibold">
-                                {n.title}
+                            <li key={n.id} className="mb-3 font-semibold">
+                                <Link
+                                    href={`/news/${n.id}`}
+                                    className="group inline-block transition-colors duration-200 underline hover:text-blue-600"
+                                >
+                                    {n.title}
+                                </Link>
                             </li>
                         ))
                     }
