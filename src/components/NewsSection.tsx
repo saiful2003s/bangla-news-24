@@ -85,7 +85,7 @@ const NewsSection = async () => {
                                                     width={400}
                                                     height={300}
                                                     src={a.imageUrl}
-                                                    alt={a.imageAlt} />
+                                                    alt={a.imageAlt || a.title} />
                                             </figure>
                                             <div className="card-body ">
                                                 <h4 className='text-red-600'>{osn.title}</h4>

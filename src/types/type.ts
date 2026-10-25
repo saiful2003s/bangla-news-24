@@ -72,3 +72,57 @@ export interface INewsSectionsResponse {
     cachedAt: string;
     data: INewsSection[];
 }
+
+
+export interface IMostReadNews {
+    id: string;
+    title: string;
+    description: string | null;
+    link: string;
+    imageUrl: string | null;
+    imageAlt: string | null;
+    category: string;
+    type: string;
+    isLive: boolean;
+    firstPublished: string | null;
+    lastPublished: string | null;
+    source: string;
+    rank: number;
+}
+
+export interface IMostReadNewsResponse {
+    success: boolean;
+    count: number;
+    cachedAt: string;
+    generated: string;
+    data: IMostReadNews[];
+}
+
+
+
+export interface ICategoryNews {
+    id: string;
+    title: string;
+    description: string;
+    link: string;
+    imageUrl: string;
+    imageAlt: string;
+    category: string;
+    type: string;
+    isLive: boolean;
+    firstPublished: string | null;
+    lastPublished: string | null;
+    source: string;
+}
+
+export interface ICategoryNewsResponse {
+    success: boolean;
+    count: number;
+    cachedAt: string;
+    slug: string;
+    topicId: string;
+    title: string;
+    page: number;
+    pageCount: number;
+    data: ICategoryNews[];
+}
