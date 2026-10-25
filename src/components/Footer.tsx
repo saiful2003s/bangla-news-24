@@ -13,7 +13,8 @@ import {
 } from "react-icons/fa6";
 
 const Footer = () => {
-    const currentYear = new Date().getFullYear();
+    // const currentYear = new Date().getFullYear();
+    const currentYear = 2026;
 
     return (
         <footer className="mt-16 bg-neutral text-neutral-content">
